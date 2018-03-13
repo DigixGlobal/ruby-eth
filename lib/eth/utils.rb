@@ -47,7 +47,7 @@ module Eth
       r = buffer[0..32]
       s = buffer[33..64]
       signature = [v, r, s].flatten.pack('C*')
-      signature_hex = Eth::Util.bin_to_prefixed_hex(signature)
+      signature_hex = Eth::Utils.bin_to_prefixed_hex(signature)
       payload = {v: v, r: r, s: s, signature: signature, signature_hex: signature_hex}
       return payload
     end
