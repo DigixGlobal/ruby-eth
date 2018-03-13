@@ -18,6 +18,18 @@ module Eth
       return payload
     end
 
+    class << self
+
+
+      def ecrecover_address(message_hash_hex, signature_hex)
+        message_hash = Eth::Utils.hex_to_bin(message_hash_hex)
+        signature = Eth::Utils.hex_to_bin(signature_hex)
+        public_key = Eth::OpenSsl.recover_compact(message_hash, signature) 
+        signer = Eth::Utils.public_key_to_address(public_key)
+        return signer
+      end
+    end
+
   end
 
 
